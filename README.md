@@ -7,6 +7,7 @@ Core builds into a static library and is meant to contain common code intended f
 The `Scripts/` directory contains build scripts for Windows and Linux, and the `Vendor/` directory contains Premake binaries (currently version `5.0-beta2`).
 
 ## Getting Started
+
 1. Clone this repository or use the "Use this template" button on GitHub to quickly set up your own repository based on this template
 2. `App/` and `Core/` are the two projects - you can edit the names of these folders and their contents to suit
 3. The three included Premake build files are `Build.lua`, `Core/Build-Core.lua` and `App/Build-App.lua` - you can edit these to customise your build configurations, edit the names of your projects and workspace/solution, etc.
@@ -15,10 +16,34 @@ The `Scripts/` directory contains build scripts for Windows and Linux, and the `
 Note that no macOS setup script is currently provided; you can duplicate the Linux script and adjust accordingly.
 
 ## Included
+
 - Some example code (in `App/Source` and `Core/Source`) to provide a starting point and test
 - Simple `.gitignore` to ignore project files and binaries
 - Premake binaries for Win/Mac/Linux (`v5.0-beta2`)
 
 ## License
+
 - UNLICENSE for this repository (see `UNLICENSE.txt` for more details)
 - Premake is licensed under BSD 3-Clause (see included LICENSE.txt file for more details)
+
+## Steps to run app
+
+Windows compiling using gcc
+
+1. Build the project by running the following command
+
+   ```bash
+    premake --file=Build.lua gmake2
+    ```
+
+2. Run the following Makefiles
+
+   ```bash
+   make -j
+   ```
+
+3. Run exectuables  example
+
+```bash
+Binaries\windows\Debug\App.exe
+```
