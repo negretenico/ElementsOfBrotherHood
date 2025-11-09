@@ -10,9 +10,15 @@ void handleInput() {
 	}
 }
 
+float calculateDeltaTime(const sf::Clock& clock) {
+	sf::Time deltaTime = clock->restart();
+	return deltaTime.asSeconds();
+}
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Hello SFML");
+	sf::Clock clock;
 	while(window.isOpen())
 	{
 		while (const std::optional event = window.pollEvent())
@@ -21,6 +27,8 @@ int main()
 			if (event->is<sf::Event::Closed>())
 				window.close();
 		}
+		// Calculate delta time at the beginning of the frame
+		float dt = calculateDeltaTime(clock);
 		handleInput();
 		window.clear(sf::Color::Black);
 		window.display();
