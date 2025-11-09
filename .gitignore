@@ -2,7 +2,7 @@
 .vs/
 .vscode/
 Binaries/
-
+Libraries/
 # Files
 *.vcxproj
 *.vcxproj.user
