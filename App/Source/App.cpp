@@ -25,15 +25,27 @@ int main()
 	sf::Clock clock;
 
 	std::vector<sf::Event> frameEvents;
-	Phase::Phase preupdatePhase;
 
+	//Phase Definitions
+	Phase::Phase preupdatePhase;
+	Phase::Phase renderPhase;
+
+	//Service definitions 
 	Service::InputService inputService;
+
+	//Layer definitions
 	auto inputLayer = std::make_unique<Layer::InputLayer>(inputService);
 	preupdatePhase.addLayer(std::move(inputLayer));
 
 
 	while(window.isOpen())
 	{
+		/*
+		*   preUpdatePhase.update(dt);   // InputLayer, etc.
+    updatePhase.update(dt);      // EntityLayer, AI, Physics
+    postUpdatePhase.update(dt);  // MusicLayer, AnalyticsLayer
+    renderPhase.update(dt);      // RenderLayer
+		*/
 		frameEvents.clear(); 
 
 		// window managment 
