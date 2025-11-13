@@ -6,6 +6,8 @@
 #include "Service.h"
 #include "InputLayer.h"
 #include "InputService.h"
+#include "RenderLayer.h"
+#include "RenderService.h"
 using namespace std;
 
 // calcualte time
@@ -32,10 +34,19 @@ int main()
 
 	//Service definitions 
 	Service::InputService inputService;
+	Service::RenderService renderService;
 
 	//Layer definitions
 	auto inputLayer = std::make_unique<Layer::InputLayer>(inputService);
+	auto backgroundRenderLayer = std::make_unique < Layer::RenderLayer>(renderService);
+
+	//layer additions
+	//preudpate layers
 	preupdatePhase.addLayer(std::move(inputLayer));
+	//update layer
+	//post update layer 
+	//render layer;
+	renderPhase.addLayer(std::move(backgroundRenderLayer));
 
 
 	while(window.isOpen())
@@ -62,7 +73,6 @@ int main()
 		float dt = calculateDeltaTime(clock);
 		Phase::PhaseContext ctx{ window, dt, true, frameEvents };
 		preupdatePhase.run(ctx); // hanle inputs
-		window.clear(sf::Color::Black);
-		window.display();
+		renderPhase.run(ctx);
 	}
 }

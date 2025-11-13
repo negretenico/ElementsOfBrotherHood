@@ -8,7 +8,6 @@ namespace Layer {
 			: renderService(service) {
 		}
 		void run(Phase::PhaseContext& ctx) override;
-		virtual void onResize(int width, int height) {}
 	private:
 		Service::Service& renderService;
 	};

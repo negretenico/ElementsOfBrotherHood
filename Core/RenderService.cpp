@@ -1,4 +1,5 @@
 #include "RenderService.h"
+#include "Service.h"
 namespace Service {
 	void RenderService::update(Phase::PhaseContext& ctx)
 	{
