@@ -10,6 +10,7 @@ namespace Registry {
 	class EventRegistry
 	{
 		public:
+			EventRegistry() = default;
 			void registerEvent(Key key, EventCallback callback);
 			void triggerEvent(Key k);
 	private:

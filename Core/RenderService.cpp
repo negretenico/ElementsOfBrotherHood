@@ -7,4 +7,8 @@ namespace Service {
 		ctx.window.clear(sf::Color::Black);
 		ctx.window.display();
 	}
+	void RenderService::resize(const Render::ResizeContext& ctx)
+	{
+		ctx.window.setSize(sf::Vector2u(ctx.width, ctx.height));
+	}
 }

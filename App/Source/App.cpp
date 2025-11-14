@@ -8,6 +8,7 @@
 #include "InputService.h"
 #include "RenderLayer.h"
 #include "RenderService.h"
+#include "EventRegistry.h"
 using namespace std;
 
 // calcualte time
@@ -18,6 +19,12 @@ float calculateDeltaTime(sf::Clock& clock) {
 
 int main()
 {
+
+	//EventBus
+	Registry::EventRegistry<sf::Event>eventRegistry;
+
+
+
 
 	// create the window
 	sf::RenderWindow window(sf::VideoMode({ 800, 600 }), "Hello SFML");
@@ -35,6 +42,16 @@ int main()
 	//Service definitions 
 	Service::InputService inputService;
 	Service::RenderService renderService;
+	// get  thing create function for refence 
+	// and then have it reutn the service all back
+	auto resizeFunc = [&renderService](const Render::ResizeContext& ctx) {
+		return []() {
+			renderService.resize(ctx);
+			}
+		};
+
+	eventRegistry.registerEvent(sf::Event::Resized, resizeFunc);
+
 
 	//Layer definitions
 	auto inputLayer = std::make_unique<Layer::InputLayer>(inputService);
@@ -66,6 +83,8 @@ int main()
 			// Request for closing the window
 			if (event->is<sf::Event::Closed>())
 				window.close();
+			if(event->is<sf::Event::Resized>())
+				eventRegistry.triggerEvent(sf::Event::Resized);
 		}
 
 		
