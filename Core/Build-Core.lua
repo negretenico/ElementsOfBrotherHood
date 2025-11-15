@@ -9,7 +9,8 @@ project "Core"
 
    includedirs
    {
-      "Source"
+      "Source",
+      "../Libraries/SFML/include"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
